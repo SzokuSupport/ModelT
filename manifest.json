@@ -31,13 +31,6 @@
                 "aspect": "backoffice"
             }
         ],
-        "extensions": {
-            "location": "/config/localextensions.xml",
-            "exclude": [
-                "custom_2_extension_without_dir",
-                "custom_1_extension_with_dir"
-            ]
-        },
         "solr": {
             "location": "/solr"
         },
