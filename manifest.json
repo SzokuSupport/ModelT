@@ -1,36 +1,81 @@
 {
-   "commerceSuiteVersion": "18.08.1",
-   "extensions": [
-       "yacceleratorstorefront",
-       "backoffice",
-       "platformbackoffice",
-       "electronicsstore",
-       "basecommercebackoffice",       
-       "yacceleratorfulfilmentprocess",
-       "solrfacetsearchbackoffice",
-       "commerceservicesbackoffice",
-       "cmscockpit",
-       "smartedit"
-   ],
-   "storeFrontExtension": "yacceleratorstorefront",
-   "storeFrontWebRoot": "/yacceleratorstorefront",
-   "properties": [
+    "commerceSuiteVersion": "1811.5",
+    "extensions": [
+        "modeltacceleratorservices",
+        "electronicsstore",
+        "customerticketingaddon",
+        "yacceleratorstorefront",
+        "backoffice",
+	"solrserver"
+    ], 
+    "useConfig": {
+        "properties": [
+            {
+                "location": "/config/local.properties"
+            },
+            {
+                "location": "/config/local-dev.properties",
+                "persona": "development"
+            },
+            {
+                "location": "/config/local-prod.properties",
+                "persona": "production"
+            },
+            {
+                "location": "/config/local-backoffice-prod.properties",
+                "persona": "production",
+                "aspect": "backoffice"
+            },
+            {
+                "location": "/config/local-backoffice.properties",
+                "aspect": "backoffice"
+            }
+        ],
+        "extensions": {
+            "location": "/config/localextensions.xml",
+            "exclude": [
+                "custom_2_extension_without_dir",
+                "custom_1_extension_with_dir"
+            ]
+        },
+        "solr": {
+            "location": "/solr"
+        },
+        "languages" : {
+            "location": "_LANGUAGES_"
+        }
+    },
+    "properties": [
         {
             "key": "test.property.1",
-            "value": "test.property.1.value"
+            "value": "test.property.1.value",
+            "persona": "production"
         },
         {
             "key": "test.property.2",
-            "value": "test.property.2.value"
+            "value": "test.property.2.value",
+            "persona": "development"
+        },
+        {
+            "key": "test.property.2",
+            "value": "test.property.2.value.in.prod.only",
+            "persona": "production"
         }
     ],
-   "project": "ps_cc2v1",
-   "recipe": "pipeline_b2c_dockerized",
-   "resultingImageVersion": "ps_cc2v1",    
-   "aspects": [
-         {
+     "aspects": [
+        {
             "name": "backoffice",
-            "properties": [],
+            "properties": [
+				{
+                    "key": "test.property.1",
+                    "value": "test.property-1-value-prod-backoffice",
+                    "persona": "production"
+                },
+                {
+                    "key": "test.property.2",
+                    "value": "test.property-2-value-backoffice"
+                }
+            ],
             "webapps": [
                 {
                     "name": "hac",
@@ -42,77 +87,52 @@
                 },
                 {
                     "name": "backoffice",
-                    "contextPath": "/backoffice"
-                },
-                {
-                    "name": "cmscockpit",
-                    "contextPath": "/cmscockpit"
-                },
-                {
-                    "name": "smartedit",
-                    "contextPath": "/smartedit"
+                    "contextPath": ""
                 }
             ]
         },
         {
             "name": "accstorefront",
             "properties": [
-               {
-                    "key": "regioncache.queryregion.evictionpolicy",
-                    "value": "LRU"
-                }
-            ],
-            "webapps": [
                 {
-                    "name": "hac",
-                    "contextPath": "/hac"
-                },
-                {
-                    "name": "mediaweb",
-                    "contextPath": "/medias"
-                },
-                {
-                    "name": "yacceleratorstorefront",
-                    "contextPath": "/backoffice"
-                },
-                {
-                    "name": "smartedit",
-                    "contextPath": "/smartedit"
-                }
-            ]
-        },
-       {
-            "name": "backgroundProcessing",
-            "properties": [
-                {
-                    "key": "cluster.node.groups",
-                    "value": "backgroundProcessing"
-                },
-                {
-                    "key": "task.workers.max",
-                    "value": "40"
-                },
-                {
-                    "key": "impex.import.workers",
-                    "value": "8"
-                },
-                {
-                    "key": "catalog.sync.workers",
-                    "value": "8"
-                },
-                {
-                    "key": "task.polling.interval",
-                    "value": "1"
-                },
-                {
-                    "key": "processengine.process.canjoinpreviousnode.default",
+                    "key": "spring.session.enabled",
                     "value": "true"
                 },
                 {
-                    "key": "yacceleratorfulfilmentprocess.fraud.scoreLimit",
-                    "value": "10000"
-                }                  
+                    "key": "spring.session.yacceleratorstorefront.save",
+                    "value":"async"
+                },
+                {
+                    "key": "spring.session.yacceleratorstorefront.cookie.name",
+                    "value": "JSESSIONID"
+                },
+                {
+                    "key": "spring.session.yacceleratorstorefront.cookie.path",
+                    "value": "/"
+                },
+                {
+                    "key":"storefrontContextRoot",
+                    "value":""
+                }
             ],
+            "webapps": [
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "mycustomstorefront",
+                    "contextPath": ""
+                },
+                {
+                    "name": "acceleratorservices",
+                    "contextPath": "/acceleratorservices"
+                }
+            ]
+        },
+        {
+            "name": "backgroundProcessing",
+            "properties": [],
             "webapps": [
                 {
                     "name": "hac",
@@ -121,13 +141,18 @@
                 {
                     "name": "mediaweb",
                     "contextPath": "/medias"
-                },
-                {
-                    "name": "yacceleratorstorefront",
-                    "contextPath": "/backoffice"
                 }
             ]
         }
-    ]
+    ],
+    "tests": {
+        "extensions": ["customerticketingaddon",
+        "yacceleratorstorefront"],
+        "annotations": ["UnitTests", "IntegrationTests"],
+        "packages": ["de.hybris.infra.*"]
+    },
+    "webTests": {
+        "extensions": ["yacceleratorstorefront"],
+        "excludedPackages": ["de.hybris.platform.*"]
+    }
 }
-
