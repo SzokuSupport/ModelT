@@ -1,6 +1,6 @@
 {
 "commerceSuiteVersion": "1905",
-"useCloudExtensionPack": true,
+"useCloudExtensionPack": false,
   "extensions": [
      "acceleratorcms",
      "adaptivesearchbackoffice",
