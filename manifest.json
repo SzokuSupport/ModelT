@@ -1,11 +1,6 @@
 {
 "commerceSuiteVersion": "1811",
-"extensionPacks": [
-	{
-		"name": "hybris-b2ctelco-suite",
-		"version": "1811.05"
-	}
-  ],
+"useCloudExtensionPack": true,
   "extensions": [
      "acceleratorcms",
      "adaptivesearchbackoffice",
