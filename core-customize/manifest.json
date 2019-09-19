@@ -4,7 +4,8 @@
   {
      "name": "hybris-b2ctelco-suite",
      "version": "1905.7"
-  },
+  }
+  ],
   "extensions": [
      "acceleratorcms",
      "adaptivesearchbackoffice",
