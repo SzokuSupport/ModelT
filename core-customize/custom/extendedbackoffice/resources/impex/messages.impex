@@ -1,0 +1,9 @@
+INSERT_UPDATE LocalizationEntry; code[unique = true]                            ; translation[lang = "de"]              ; context(code)[default = SERVER]
+                               ; CoreAuthenticationProvider.badCredentials      ; Bitte überprüfen Sie Ihre Eingaben!   ;
+                               ; CoreAuthenticationProvider.credentialsExpired  ; Ihr Passwort ist abgelaufen!          ;
+                               ; CoreAuthenticationProvider.passwordsDoNotMatch ; Die Passwörter stimmen nicht überein! ; ;
+
+INSERT_UPDATE LocalizationEntry; code[unique = true]                            ; translation[lang = "en"]            ; context(code)[default = SERVER]
+                               ; CoreAuthenticationProvider.badCredentials      ; Please check your credentials!      ;
+                               ; CoreAuthenticationProvider.credentialsExpired  ; Your credentials have expired!      ;
+                               ; CoreAuthenticationProvider.passwordsDoNotMatch ; The entered passwords do not match! ; ;

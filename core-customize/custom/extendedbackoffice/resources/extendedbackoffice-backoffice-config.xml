@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<config xmlns="http://www.hybris.com/cockpit/config" xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+
+    <context merge-by="type" type="Employee" component="editor-area">
+        <editorArea:editorArea>
+            <editorArea:tab name="hmc.password">
+                <editorArea:section name="hmc.password" merge-mode="append">
+                    <editorArea:attribute qualifier="initialPassword" description="hmc.text.initialPassword.description"/>
+                    <editorArea:attribute qualifier="lastPasswordChange" description="hmc.text.lastPasswordChange.description"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+</config>

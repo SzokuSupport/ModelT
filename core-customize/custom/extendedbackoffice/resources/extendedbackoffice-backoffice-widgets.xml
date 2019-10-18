@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+    
+
+    <widget-connection inputId="input" outputId="nodeSelected" sourceWidgetId="extendedbackoffice-explorer-tree" targetWidgetId="extendedbackoffice-tree-node-adapter"/>
+    <widget-connection inputId="genericInput" outputId="true" sourceWidgetId="extendedbackoffice-tree-node-adapter" targetWidgetId="extendedbackoffice-typecode-extractor"/>
+    <widget-connection inputId="genericInput" outputId="true" sourceWidgetId="extendedbackoffice-tree-node-adapter" targetWidgetId="extendedbackoffice-search-enabler"/>
+    <widget-connection inputId="genericInput" outputId="false" sourceWidgetId="extendedbackoffice-tree-node-adapter" targetWidgetId="extendedbackoffice-search-disabler"/>
+    <widget-connection inputId="type" outputId="genericOutput" sourceWidgetId="extendedbackoffice-typecode-extractor" targetWidgetId="extendedbackoffice-search-logic"/>
+    <widget-connection inputId="enabled" outputId="genericOutput" sourceWidgetId="extendedbackoffice-search-enabler" targetWidgetId="extendedbackoffice-text-search"/>
+    <widget-connection inputId="enabled" outputId="genericOutput" sourceWidgetId="extendedbackoffice-search-disabler" targetWidgetId="extendedbackoffice-text-search"/>
+    <widget-connection inputId="searchtext" outputId="query" sourceWidgetId="extendedbackoffice-text-search" targetWidgetId="extendedbackoffice-search-logic"/>
+    <widget-connection inputId="pageable" outputId="pageable" sourceWidgetId="extendedbackoffice-search-logic" targetWidgetId="extendedbackoffice-simple-list"/>
+
+</widgets>
