@@ -42,7 +42,7 @@
      "assistedservicefacades",
      "assistedservicestorefront",
      "assistedservicecustomerinterestsaddon",
-    "modeltacceleratorservices"
+    "modeltacceleratorservices",
 	"librarytest"
   ],
   "properties": [
