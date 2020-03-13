@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="extendedbackofficeLabelLocator" class="com.hybris.cockpitng.util.labels.ResourcesLabelLocator" scope="singleton"
+          init-method="init" lazy-init="false">
+        <property name="location" value="/extendedbackoffice-backoffice-labels/"/>
+        <property name="name" value="labels"/>
+    </bean>
+
+    <alias name="extendedBackofficeLoginInfoRenderer" alias="loginInfoRenderer"/>
+    <bean id="extendedBackofficeLoginInfoRenderer" parent="defaultLoginInfoRenderer"
+          class="net.netconomy.extendedbackoffice.renderer.ExtendedBackofficeLoginInfoRenderer"/>
+
+    <alias name="extendedBackofficeLoginInformationHandler" alias="loginInformationHandler"/>
+    <bean id="extendedBackofficeLoginInformationHandler" parent="defaultLoginInformationHandler" init-method="init" scope="session">
+        <property name="configuration">
+            <list merge="true">
+                <bean class="com.hybris.cockpitng.handler.login.LoginInformationConfigData">
+                    <constructor-arg value="newPassword"></constructor-arg>
+                    <constructor-arg value="login.newPassword"></constructor-arg>
+                    <constructor-arg value="java.lang.String"></constructor-arg>
+                    <constructor-arg>
+                        <value type="java.lang.Integer">4</value>
+                    </constructor-arg>
+                </bean>
+                <bean class="com.hybris.cockpitng.handler.login.LoginInformationConfigData">
+                    <constructor-arg value="newPasswordConfirm"></constructor-arg>
+                    <constructor-arg value="login.newPasswordConfirm"></constructor-arg>
+                    <constructor-arg value="java.lang.String"></constructor-arg>
+                    <constructor-arg>
+                        <value type="java.lang.Integer">5</value>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <alias name="extendedBackofficeAuthenticationDetailsSource" alias="backofficeAuthenticationDetailsSource"/>
+    <bean id="extendedBackofficeAuthenticationDetailsSource"
+          class="net.netconomy.extendedbackoffice.authentication.details.ExtendedBackofficeAuthenticationDetailsSource">
+        <property name="localeRequestParameter" value="locale"/>
+    </bean>
+
+    <alias name="extendedBackofficeAuthenticationProvider" alias="backofficeAuthenticationProvider"/>
+    <bean id="extendedBackofficeAuthenticationProvider" parent="platformBackofficeAuthenticationProvider"
+          class="net.netconomy.extendedbackoffice.authentication.provider.ExtendedBackofficeCoreAuthenticationProvider">
+        <property name="additionalChecks" ref="additionalUserAuthenticationChecks"/>
+    </bean>
+
+    <bean abstract="true" id="abstractUserAuthenticationChecker"
+          class="net.netconomy.extendedbackoffice.authentication.checks.AbstractUserAuthenticationChecker">
+        <property name="userService" ref="userService"/>
+        <property name="messageSource" ref="messageSource"/>
+        <property name="i18NService" ref="i18NService"/>
+    </bean>
+
+    <util:list id="additionalUserAuthenticationChecks">
+        <bean class="net.netconomy.extendedbackoffice.authentication.checks.impl.NewPasswordUserAuthenticationChecker"
+              parent="abstractUserAuthenticationChecker">
+            <property name="modelService" ref="modelService"/>
+        </bean>
+        <bean class="net.netconomy.extendedbackoffice.authentication.checks.impl.CredentialsExpiredUserAuthenticationChecker"
+              parent="abstractUserAuthenticationChecker">
+            <property name="configurationService" ref="configurationService"/>
+        </bean>
+    </util:list>
+
+</beans>

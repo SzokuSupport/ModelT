@@ -1,5 +1,5 @@
 {
-  "commerceSuiteVersion": "1905.0",
+  "commerceSuiteVersion": "1905",
   "extensions": [
      "acceleratorcms",
      "adaptivesearchbackoffice",
@@ -43,6 +43,7 @@
      "assistedservicestorefront",
      "assistedservicecustomerinterestsaddon",
     "modeltacceleratorservices"
+	"librarytest"
   ],
   "properties": [
     {

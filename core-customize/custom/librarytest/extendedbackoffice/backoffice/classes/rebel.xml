@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://www.zeroturnaround.com">
+  <classpath>
+    <dir name="/neusta/Projekte/dgl/dgl-hybris/hybris/bin/custom/extendedbackoffice/backoffice/classes" />
+  </classpath>
+</application>
